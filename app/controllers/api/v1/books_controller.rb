@@ -4,10 +4,7 @@ class Api::V1::BooksController < ApplicationController
 
   # GET /books
   def index
-    if current_user
-      user = current_user.books.all
-      render json: user
-    end
+    render json: current_user.books.all if current_user
   end
 
   # GET /books/1
@@ -50,6 +47,7 @@ class Api::V1::BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def book_params
-    params.require(:book).permit(:title, :author, :category, :reading_percentage, :pagesTotal, :user_id)
+    params.require(:book)
+      .permit(:title, :author, :category, :reading_percentage, :pagesTotal, :user_id)
   end
 end
