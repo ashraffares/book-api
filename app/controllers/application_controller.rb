@@ -9,9 +9,6 @@ class ApplicationController < ActionController::API
     token = token_header
     if token
       decode_token = decrypt(token)
-      puts "###############"
-      puts decode_token
-      puts "###############"
       user_id = decode_token[0]['user_id']
       user = User.find(user_id)
       if user.present?
