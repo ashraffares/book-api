@@ -1,4 +1,4 @@
-class BooksController < ApplicationController
+class Api::V1::BooksController < ApplicationController
   before_action :auth
   before_action :set_book, only: %i[show update destroy]
 
@@ -38,6 +38,7 @@ class BooksController < ApplicationController
   # DELETE /books/1
   def destroy
     @book.destroy
+    render json: { success: 'Book destroyed successfully' }, status: :ok
   end
 
   private

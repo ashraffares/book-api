@@ -9,9 +9,12 @@ class ApplicationController < ActionController::API
     token = token_header
     if token
       decode_token = decrypt(token)
+      puts "###############"
+      puts decode_token
+      puts "###############"
       user_id = decode_token[0]['user_id']
       user = User.find(user_id)
-      if user.persent?
+      if user.present?
         user
       else
         render json: { error: 'Invalide token!' }, status: :unprocessable_entity
@@ -33,8 +36,10 @@ class ApplicationController < ActionController::API
   end
 
   def decrypt(token)
-    jwt.decode token, SECRETS, 'HS256'
-  rescue StandardError => e
-    e
+    begin
+      JWT.decode token, SECRETS, 'HS256'
+    rescue StandardError => e
+      e
+    end
   end
 end

@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
       token = encrypt({ user_id: user.id })
       render json: { token: token }, status: :ok
     else
-      render json: { error: user.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: 'Invalid Email or Password'}, status: :unprocessable_entity
     end
   end
 
