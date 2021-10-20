@@ -9,7 +9,7 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  def registeration
+  def create
     new_user = User.create(email: params[:email], password: params[:password], password_confimration: params[:password_confimration])
     if new_user.save
       token = encrypt({ user_id: new_user.id })
