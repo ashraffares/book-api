@@ -33,10 +33,8 @@ class ApplicationController < ActionController::API
   end
 
   def decrypt(token)
-    begin
-      JWT.decode token, SECRETS, 'HS256'
-    rescue StandardError => e
-      e
-    end
+    JWT.decode token, SECRETS, 'HS256'
+  rescue StandardError => e
+    e
   end
 end
