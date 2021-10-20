@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+  </script>
+  <title>Book API</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <%= link_to 'Book Api', root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+    </div>
+  </nav>
+
+  <header class="container-fluid text-center bg-primary text-white">
+    <h1 class="display-1">BookApi</h1>
+    <p class="display-5">The RESTful BookApi.</p>
+    <div class="text-center bg-dark text-white p-3 rounded">
+      <p class="lead font-weight-bold">BookApi everthing you will ever need in one place,</p>
+      <p class="lead font-weight-bold">easily accessible through a modern RESTful API.</p>
+    </div>
+  </header>
+  <main class="p-3 bg-dark">
+    <hr class="bg-white">
+    <span class="lead text-white">
+      BaseUrl:
+      <a href="https://vast-eyrie-23535.herokuapp.com/api/v1/">"https://vast-eyrie-23535.herokuapp.com/api/v1/"</a>
+    </span>
+    <div class=" text-white p-3">
+      <h6 class="text-center"><u>Login & register</u></h6>
+      <h6>Register Example:</h6>
+      <details>
+        <summary>Register expected data</summary>
+        <pre>
+          data: {
+            name: "steve",
+
+            email: "example@gmail.com",
+
+            passowrd: "Example0011$$&&",
+
+            password_confirmation: "Example0011$$&&"
+
+        }
+        </pre>
+      </details>
+      <details>
+        <summary>Register user code snippet JS</summary>
+        <pre>
+            export const RegisterUser = async (obj) => {
+            try {
+              const response = await axios({
+                method: 'post',
+                url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/registeration',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                data: obj,
+              });
+            
+            } catch (error) {
+              error
+            }
+          };
+        </pre>
+      </details>
+
+      <details>
+        <summary>expected output</summary>
+        <pre>
+          response {
+            token: token
+          }
+        </pre>
+      </details>
+    </div>
+    <hr class="bg-white">
+
+    <div class=" text-white p-3">
+      <h6>Login Example:</h6>
+      <details>
+        <summary>Login expected data</summary>
+        <pre>
+          data: {
+  
+            email: "example@gmail.com",
+  
+            passowrd: "Example0011$$&&",
+  
+        }
+        </pre>
+      </details>
+      <details>
+        <summary>Login user code snippet JS</summary>
+        <pre>
+            export const LoginUser = async (obj) => {
+              try {
+                const response = await axios({
+                  method: 'post',
+                  url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/login',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  data: obj,
+                });
+              } catch (error) {
+                error
+              }
+            };
+        </pre>
+      </details>
+
+      <details>
+        <summary>expected output</summary>
+        <pre>
+          response {
+            token: token
+          }
+        </pre>
+      </details>
+    </div>
+    
+    <hr class="bg-white">
+  </main>
+</body>
+
+</html>
