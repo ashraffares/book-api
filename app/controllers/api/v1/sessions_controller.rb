@@ -10,7 +10,8 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def create
-    new_user = User.create(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+    new_user = User.create(email: params[:email], password: params[:password],
+                           password_confirmation: params[:password_confirmation])
     if new_user.save
       token = encrypt({ user_id: new_user.id })
       render json: { token: token }, status: :ok
