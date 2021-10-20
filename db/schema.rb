@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 2021_10_20_090253) do
 
   create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "author"
-    t.string "category"
-    t.integer "pagesTotal"
+    t.string "title", null: false
+    t.string "author", null: false
+    t.string "category", null: false
+    t.integer "pagesTotal", null: false
     t.float "reading_percentage", default: 0.0
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
