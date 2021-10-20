@@ -23,11 +23,9 @@ class ApplicationController < ActionController::API
 
   def current_user
     token = token_header
-    if token
-      decoded_token = decrypt(token)
-      user_id = decoded_token[0]['user_id']
-      User.find(user_id)
-    end
+    decoded_token = decrypt(token)
+    user_id = decoded_token[0]['user_id']
+    User.find(user_id)
   end
 
   def encrypt(payload)
