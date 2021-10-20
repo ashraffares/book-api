@@ -1,6 +1,6 @@
 class Api::V1::SessionsController < ApplicationController
   def login
-    user = User.find(email: params[:email])
+    user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       token = encrypt({ user_id: user.id })
       render json: { token: token }, status: :ok
