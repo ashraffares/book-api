@@ -1,10 +1,10 @@
 class Api::V1::MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :update, :destroy]
+  before_action :auth
+  before_action :set_message, only: %i[show update destroy]
 
   # GET /messages
   def index
     @messages = Message.all
-
     render json: @messages
   end
 
@@ -18,7 +18,7 @@ class Api::V1::MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      render json: @message, status: :created, location: @message
+      render json: @message, status: :created
     else
       render json: @message.errors, status: :unprocessable_entity
     end
@@ -36,16 +36,18 @@ class Api::V1::MessagesController < ApplicationController
   # DELETE /messages/1
   def destroy
     @message.destroy
+    render json: { success: 'Message destroyed successfully.' }, status: :ok
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def message_params
-      params.require(:message).permit(:message, :book_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_message
+    @message = Message.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def message_params
+    params.require(:message).permit(:message, :book_id)
+  end
 end
