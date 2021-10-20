@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_090253) do
     t.string "title"
     t.string "author"
     t.string "category"
+    t.integer "pagesTotal"
     t.float "reading_percentage", default: 0.0
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
