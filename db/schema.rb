@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_110406) do
     t.string "author", null: false
     t.string "category", null: false
     t.integer "pagesTotal", null: false
-    t.float "reading_percentage", default: 0.0
+    t.integer "reading_percentage", default: 0
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -27,9 +27,11 @@ ActiveRecord::Schema.define(version: 2021_10_20_110406) do
   create_table "messages", force: :cascade do |t|
     t.text "message", null: false
     t.integer "book_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_messages_on_book_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,4 +44,5 @@ ActiveRecord::Schema.define(version: 2021_10_20_110406) do
 
   add_foreign_key "books", "users"
   add_foreign_key "messages", "books"
+  add_foreign_key "messages", "users"
 end

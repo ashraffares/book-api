@@ -5,7 +5,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string :author, null: false
       t.string :category, null: false
       t.integer :pagesTotal, null: false
-      t.float :reading_percentage, default: 0
+      t.integer :reading_percentage, default: 0
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
